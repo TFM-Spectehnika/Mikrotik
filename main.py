@@ -7,8 +7,8 @@ import ftplib
 
 date = datetime.today().strftime("%Y%d%m")
 routers = ['10.10.1.1', '10.10.2.1', '10.10.3.1', '10.10.4.1', '10.10.7.1', '10.10.8.1', '10.10.9.1', '10.10.10.1', '10.10.11.1', '10.10.14.1', '10.10.15.1', '192.168.2.200']
-user = 'admin'
-secret = 'tchibo9536'
+user = 'Admin_user'
+secret = 'your_admin_pass'
 port = 22
 
 for router in routers:
@@ -27,12 +27,12 @@ for router in routers:
         ftp.encoding = "utf-8"
         down_rsc = f"{name_file}.rsc"
         down_backup = f"{name_file}.backup"
-        if not os.path.exists(f'\\\\srv-file\IT$\Mikrot\\{router}'):
-            os.mkdir(f'\\\\srv-file\IT$\Mikrot\\{router}')
-        if not os.path.exists(f'\\\\srv-file\IT$\Mikrot\\{router}\\{date}'):
-            os.mkdir(f'\\\\srv-file\IT$\Mikrot\\{router}\\{date}')
-        out_rsc = f'\\\\srv-file\IT$\Mikrot\\{router}\\{date}\\{down_rsc}'
-        out_backup = f'\\\\srv-file\IT$\Mikrot\\{router}\\{date}\\{down_backup}'
+        if not os.path.exists(f'\\\\server\path\\{router}'):
+            os.mkdir(f'\\\\server\path\\{router}')
+        if not os.path.exists(f'\\\\server\path\\{router}\\{date}'):
+            os.mkdir(f'\\\\server\path\\{router}\\{date}')
+        out_rsc = f'\\\\server\path\\{router}\\{date}\\{down_rsc}'
+        out_backup = f'\\\\server\path\\{router}\\{date}\\{down_backup}'
         with open(out_rsc, 'wb') as f:
             ftp.retrbinary('RETR ' + down_rsc, f.write)
             with open(out_backup, 'wb') as f:
